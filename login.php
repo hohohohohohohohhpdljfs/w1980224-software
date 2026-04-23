@@ -1,5 +1,5 @@
 <?php
-<<<<<<< HEAD
+
 if (session_status() === PHP_SESSION_NONE) {
    session_start();
 }
@@ -9,12 +9,12 @@ $previewMode = !isset($pdo) || !$pdo;
 =======
 session_start();
 require_once __DIR__ . "/config.php";
->>>>>>> aa9639b (Final version for submission)
+
 
 $error = "";
 $email= trim($_POST["email"] ?? "");
 
-<<<<<<< HEAD
+
 if($previewMode && $_SERVER["REQUEST_METHOD"] !== "POST") {
    $error = "Database is not configured on the university server yet.";
 }
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($pdo) && $pdo) {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Please enter a valid email.";
     }else{
-=======
+
 //handle form submission for user login
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $password = $_POST["password"] ?? "";
@@ -43,18 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     }else{
       //look up user by email address
->>>>>>> aa9639b (Final version for submission)
         $stmt = $pdo->prepare("SELECT id, name, password_hash FROM users WHERE email = ?");
          $stmt->execute([$email]);
          $user =  $stmt->fetch();
 
-<<<<<<< HEAD
+
          if (!$user || !password_verify($password, $user["password_hash"])) {
             $error = "Email or password is incorrect.";
          } else {
             $_SESSION["user_id"] = (int)$user["id"];
             $_SESSION["user_name"] = $user["name"];
-=======
+
          //verify user hashed password securely using password_verify
          if (!$user || !password_verify($password, $user["password_hash"])) {
             $error = "Email or password is incorrect.";
@@ -64,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["user_name"] = $user["name"];
             
             //redirect authenticated user to dashboard
->>>>>>> aa9639b (Final version for submission)
             header("Location: dashboard.php");
             exit;
          }
@@ -82,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 
-<<<<<<< HEAD
+
 <body>
 <div class="wrap">
 <div class="brand">
@@ -94,14 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <a href="/app/#/" class="home-btn">  Homepage</a>
 
 <div class="brand">
->>>>>>> aa9639b (Final version for submission)
 <h1>Welcome back</h1>
 <p>Login to continue tracking your habits</p>
 </div>
 
-<<<<<<< HEAD
+
 <div class="card">
-=======
 <div class="card auth-card">
 >>>>>>> aa9639b (Final version for submission)
 <?php if ($error): ?>

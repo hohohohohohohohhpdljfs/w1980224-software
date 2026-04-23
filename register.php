@@ -1,12 +1,12 @@
 <?php
-<<<<<<< HEAD
+
  
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 =======
 session_start();
->>>>>>> aa9639b (Final version for submission)
+
 require_once __DIR__ . "/config.php";
 
 $error = "";
@@ -36,13 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   } else {
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-<<<<<<< HEAD
+
     $stmt = $pdo->prepare(
       "INSERT INTO users (name, email, password_hash) VALUES (?,?,?)"
       );
-=======
+
     $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?,?,?)");
->>>>>>> aa9639b (Final version for submission)
     $stmt->execute([$name, $email, $hash]);
 
     $_SESSION["user_id"] = (int)$pdo->lastInsertId();
@@ -66,12 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 
-<<<<<<< HEAD
+
 <body>
 <div class="wrap">
 <div class="brand">
 <div class="logo"></div>
-=======
 <body class="auth-page">
 
 <div class="wrap auth-wrap">
@@ -84,11 +82,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <p>Start small, stay consistent. Your habits live here.</p>
 </div>
 
-<<<<<<< HEAD
 <div class="card">
-=======
+
 <div class="card auth-card">
->>>>>>> aa9639b (Final version for submission)
+
 <?php if ($error): ?>
 <div class="alert error"><?= htmlspecialchars($error) ?></div>
 <?php endif; ?>

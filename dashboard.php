@@ -1,7 +1,6 @@
 <?php
 session_start();
-<<<<<<< HEAD
-=======
+
 require_once __DIR__ . "/config.php";
 
 //Check if user is logged in securely 
@@ -10,14 +9,14 @@ require_once __DIR__ . "/config.php";
     header("Location: login.php");
     exit;
  }
-<<<<<<< HEAD
+
  require_once __DIR__ . "/config.php";
 
  $name = $_SESSION["user_name"] ?? "User";
 
  $previewMode = !isset($pdo) || !$pdo;
  ?>
-=======
+
 
  $name = $_SESSION["user_name"] ?? "User";
  $user_id = (int)$_SESSION["user_id"];
@@ -161,7 +160,7 @@ $badgeEmoji = "";
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Dashboard - HabitFlow</title>
-<<<<<<< HEAD
+
         <link rel="stylesheet" href="style.css">
 </head>
 
@@ -318,7 +317,7 @@ $badgeEmoji = "";
 </div>
 </aside>
 
-<<<<<<< HEAD
+
 </div>
 
 =======
@@ -512,7 +511,6 @@ $badgeEmoji = "";
             }
         });
 </script>
->>>>>>> aa9639b (Final version for submission)
 </body>
 </html>
 
