@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+
+# Node / React
+node_modules/
+dist/
+build/
+.vite/
+*.log
+
+# Env / secrets
+.env
+.env.*
+config.local.php
+config.php
+
+# IDE
+.vscode/
+.idea/
+
+# Vendor (if you ever use composer)
+vendor/
