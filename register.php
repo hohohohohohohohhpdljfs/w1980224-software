@@ -1,12 +1,5 @@
 <?php
-
- 
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-=======
 session_start();
-
 require_once __DIR__ . "/config.php";
 
 $error = "";
@@ -36,11 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   } else {
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-
-    $stmt = $pdo->prepare(
-      "INSERT INTO users (name, email, password_hash) VALUES (?,?,?)"
-      );
-
     $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?,?,?)");
     $stmt->execute([$name, $email, $hash]);
 
@@ -65,11 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 
-
-<body>
-<div class="wrap">
-<div class="brand">
-<div class="logo"></div>
 <body class="auth-page">
 
 <div class="wrap auth-wrap">
@@ -77,15 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <div class="brand">
->>>>>>> aa9639b (Final version for submission)
 <h1>Create your account</h1>
 <p>Start small, stay consistent. Your habits live here.</p>
 </div>
 
-<div class="card">
-
 <div class="card auth-card">
-
 <?php if ($error): ?>
 <div class="alert error"><?= htmlspecialchars($error) ?></div>
 <?php endif; ?>

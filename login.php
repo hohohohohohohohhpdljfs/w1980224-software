@@ -1,33 +1,9 @@
 <?php
-
-if (session_status() === PHP_SESSION_NONE) {
-   session_start();
-}
-require_once __DIR__ . "/config.php";
-$previewMode = !isset($pdo) || !$pdo;
-
-=======
 session_start();
 require_once __DIR__ . "/config.php";
 
-
 $error = "";
 $email= trim($_POST["email"] ?? "");
-
-
-if($previewMode && $_SERVER["REQUEST_METHOD"] !== "POST") {
-   $error = "Database is not configured on the university server yet.";
-}
-
-
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($pdo) && $pdo) { 
-  $password = $_POST["password"] ?? "";
-  if ($email === "" || $password === "") {
-    $error = "Please fill in all fields.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Please enter a valid email.";
-    }else{
 
 //handle form submission for user login
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -47,13 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
          $stmt->execute([$email]);
          $user =  $stmt->fetch();
 
-
-         if (!$user || !password_verify($password, $user["password_hash"])) {
-            $error = "Email or password is incorrect.";
-         } else {
-            $_SESSION["user_id"] = (int)$user["id"];
-            $_SESSION["user_name"] = $user["name"];
-
          //verify user hashed password securely using password_verify
          if (!$user || !password_verify($password, $user["password_hash"])) {
             $error = "Email or password is incorrect.";
@@ -61,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //store user session after successful authentication
             $_SESSION["user_id"] = (int)$user["id"];
             $_SESSION["user_name"] = $user["name"];
-            
             //redirect authenticated user to dashboard
             header("Location: dashboard.php");
             exit;
@@ -80,12 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 
-
-<body>
-<div class="wrap">
-<div class="brand">
-<div class="logo"></div>
-=======
 <body class="auth-page">
 
 <div class="wrap auth-wrap">
@@ -96,10 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <p>Login to continue tracking your habits</p>
 </div>
 
-
-<div class="card">
 <div class="card auth-card">
->>>>>>> aa9639b (Final version for submission)
 <?php if ($error): ?>
 <div class="alert error"><?= htmlspecialchars($error) ?></div>
 <?php endif; ?>
